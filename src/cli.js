@@ -7,25 +7,21 @@ yargs
     alias: ['i', 'e'],
     description: 'Entry file',
     demandOption: true,
-    default: null,
   })
-  .option('output', {
-    type: 'string',
-    alias: ['o'],
-    description: 'Output file',
-    demandOption: false,
-    default: null,
-  })
-  .command(['$0 [entry]'], 'Load JSON file', () => {}, argv => run(argv, false))
+  .command(
+    ['load [entry]', '$0 [entry]'],
+    'Load JSON file',
+    () => {},
+    argv => run(argv, false)
+  )
   .help().argv;
 
 function run(options) {
-  new Mergeon({ entry: options.entry, output: options.output })
+  new Mergeon({ entry: options.entry })
     .load()
     .then(result => {
-      if (options.output === null) {
-        console.log(JSON.stringify(result.data, null, 2));
-      }
+      const jsonString = JSON.stringify(result.data, null, 2);
+      process.stdout.write(`${jsonString}\n`);
       process.exit(0);
     })
     .catch(error => {
