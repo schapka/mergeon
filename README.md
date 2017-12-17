@@ -1,5 +1,6 @@
 [![npm](https://img.shields.io/npm/v/mergeon.svg?style=flat)](https://www.npmjs.org/package/mergeon)
 [![Build Status](https://travis-ci.org/schapka/mergeon.svg?branch=master)](https://travis-ci.org/schapka/mergeon)
+[![Build status](https://ci.appveyor.com/api/projects/status/cwrjsbht5tuicc94/branch/master?svg=true)](https://ci.appveyor.com/project/schapka/mergeon/branch/master)
 
 # Mergeon
 
