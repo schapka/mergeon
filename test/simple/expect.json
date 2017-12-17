@@ -1,0 +1,10 @@
+{
+  "items": [
+    {
+      "title": "New title",
+      "image": {
+        "src": "path/to/image.jpg"
+      }
+    }
+  ]
+}

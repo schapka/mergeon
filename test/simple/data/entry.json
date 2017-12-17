@@ -1,0 +1,8 @@
+{
+  "items": [
+    {
+      "_extends": "./default-item.json",
+      "title": "New title"
+    }
+  ]
+}
