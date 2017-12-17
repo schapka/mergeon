@@ -8,12 +8,10 @@
   "bin": "dist/cli.js",
   "scripts": {
     "prebuild": "rimraf dist",
-    "build": "microbundle build --compress false --format cjs src/*.js"
+    "build":
+      "microbundle build --compress false --format cjs src/{index,cli}.js"
   },
-  "files": [
-    "src",
-    "dist"
-  ],
+  "files": ["src", "dist"],
   "devDependencies": {
     "microbundle": "~0.2.4",
     "rimraf": "~2.6.2"

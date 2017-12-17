@@ -1,3 +1,9 @@
-import Mergeon from './mergeon/Mergeon';
+import Loader from './Loader';
 
-export default Mergeon;
+function mergeon(options) {
+  return new Loader(options);
+}
+
+mergeon.load = options => new Loader(options).load();
+
+export default mergeon;

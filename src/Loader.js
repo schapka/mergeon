@@ -3,7 +3,7 @@ const DEFAULT_OPTIONS = {
   extendKey: '_extends',
 };
 
-export default class Mergeon {
+class Loader {
   constructor(options) {
     this._options = Object.assign({}, DEFAULT_OPTIONS, options);
   }
@@ -14,3 +14,5 @@ export default class Mergeon {
     });
   }
 }
+
+export default Loader;

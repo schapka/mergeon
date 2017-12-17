@@ -1,5 +1,5 @@
 import yargs from 'yargs';
-import Mergeon from '.';
+import mergeon from '.';
 
 yargs
   .option('entry', {
@@ -17,8 +17,8 @@ yargs
   .help().argv;
 
 function run(options) {
-  new Mergeon({ entry: options.entry })
-    .load()
+  mergeon
+    .load({ entry: options.entry })
     .then(result => {
       const jsonString = JSON.stringify(result.data, null, 2);
       process.stdout.write(`${jsonString}\n`);
