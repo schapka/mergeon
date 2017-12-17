@@ -21,6 +21,6 @@ Options:
 
 * ~~Import code from prototype project~~
 * ~~Extend result object (list dependencies)~~
-* Write tests
+* ~~Write tests~~
 * Update docs
 * Publish

@@ -1,0 +1,7 @@
+{
+  "title": "C",
+  "c-0": {
+    "_extends": "./e.json",
+    "title": "E EXTENDED"
+  }
+}

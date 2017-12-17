@@ -1,0 +1,45 @@
+{
+  "title": "A",
+  "a-0": {
+    "title": "B",
+    "deps": [
+      {
+        "title": "E",
+        "whaat": "ok"
+      },
+      {
+        "title": "E",
+        "whaat": "ok"
+      }
+    ]
+  },
+  "a-1": {
+    "title": "C",
+    "c-0": {
+      "title": "E EXTENDED",
+      "whaat": "ok"
+    }
+  },
+  "a-2": [
+    {
+      "title": "D",
+      "d-0": {
+        "title": "E",
+        "whaat": "ok"
+      },
+      "d-1": {
+        "title": "B",
+        "deps": [
+          {
+            "title": "E",
+            "whaat": "ok"
+          },
+          {
+            "title": "E",
+            "whaat": "ok"
+          }
+        ]
+      }
+    }
+  ]
+}

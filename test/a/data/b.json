@@ -1,0 +1,11 @@
+{
+  "title": "B",
+  "deps": [
+    {
+      "_extends": "./e.json"
+    },
+    {
+      "_extends": "./e.json"
+    }
+  ]
+}

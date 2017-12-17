@@ -1,0 +1,14 @@
+{
+  "title": "A",
+  "a-0": {
+    "_extends": "./b.json"
+  },
+  "a-1": {
+    "_extends": "./c.json"
+  },
+  "a-2": [
+    {
+      "_extends": "./d.json"
+    }
+  ]
+}

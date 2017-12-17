@@ -1,0 +1,9 @@
+{
+  "title": "D",
+  "d-0": {
+    "_extends": "./e.json"
+  },
+  "d-1": {
+    "_extends": "./b.json"
+  }
+}
