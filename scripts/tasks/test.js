@@ -24,6 +24,7 @@ const runNext = () => {
   }
 
   const dir = directories[i];
+  const testName = path.basename(dir);
   const optionsFile = path.resolve(dir, 'options.js');
   const expectedDataFile = path.resolve(dir, 'expect.json');
   const options = require(optionsFile);
@@ -31,7 +32,6 @@ const runNext = () => {
   mergeon
     .load(options)
     .then(result => {
-      const testName = path.basename(dir);
       process.stdout.write(`Running test "${testName}"\n`);
       return assert.deepEqual(
         result.data,
