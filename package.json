@@ -9,12 +9,12 @@
     "type": "git",
     "url": "https://github.com/schapka/mergeon.git"
   },
-  "main": "dist/index.js",
+  "main": "dist/mergeon.js",
   "bin": "dist/cli.js",
   "scripts": {
     "prebuild": "rimraf dist",
     "build":
-      "microbundle build --compress false --format cjs src/index.js src/cli.js",
+      "microbundle build --compress false --format cjs src/mergeon.js src/cli.js",
     "pretest": "npm run -s build",
     "test": "node scripts/tasks/test.js"
   },
