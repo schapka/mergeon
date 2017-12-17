@@ -24,7 +24,7 @@ function run(options) {
   mergeon
     .load(options)
     .then(result => {
-      const jsonString = JSON.stringify(result, null, 2);
+      const jsonString = JSON.stringify(result.data, null, 2);
       process.stdout.write(`${jsonString}\n`);
       process.exit(0);
     })

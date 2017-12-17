@@ -34,7 +34,7 @@ class Loader {
     return dependencies;
   }
 
-  _extend(data, filePath, ancestors = []) {
+  _extend(data, filePath, pool, ancestors) {
     return new Promise((resolve, reject) => {
       const context = dirname(filePath);
       const dependencies = this._getDependencies(data).map(dependency =>
@@ -55,7 +55,7 @@ class Loader {
               const source = _.get(data, dependency.at);
               const merged = _.mergeWith(
                 {},
-                this._cache[dependency.filePath],
+                pool[dependency.filePath],
                 source,
                 this._options.mergeCustomizer
               );
@@ -64,7 +64,11 @@ class Loader {
             });
             resolve(data);
           } else {
-            this._read(dependencies[loadedDependencies].filePath, ancestors)
+            this._read(
+              dependencies[loadedDependencies].filePath,
+              pool,
+              ancestors
+            )
               .then(data => {
                 loadedDependencies++;
                 loadNextDependency();
@@ -78,7 +82,7 @@ class Loader {
     });
   }
 
-  _read(filePath, ancestors = []) {
+  _read(filePath, pool = {}, ancestors = []) {
     return new Promise((resolve, reject) => {
       const updatedAncestors = [].concat(ancestors, [filePath]);
 
@@ -86,15 +90,15 @@ class Loader {
         setImmediate(() => {
           reject(new Error(`Recursion Error: ${updatedAncestors.join(' > ')}`));
         });
-      } else if (this._cache[filePath]) {
+      } else if (pool[filePath]) {
         setImmediate(() => {
-          resolve(this._cache[filePath]);
+          resolve(pool[filePath]);
         });
       } else {
         readJSON(filePath)
-          .then(data => this._extend(data, filePath, updatedAncestors))
+          .then(data => this._extend(data, filePath, pool, updatedAncestors))
           .then(extendedData => {
-            this._cache[filePath] = extendedData;
+            pool[filePath] = extendedData;
             resolve(extendedData);
           })
           .catch(error => reject(error));
@@ -103,8 +107,11 @@ class Loader {
   }
 
   load() {
-    this._cache = {};
-    return this._read(resolveFile(this._options.entry));
+    const pool = {};
+    return this._read(resolveFile(this._options.entry), pool).then(data => ({
+      data,
+      files: Object.keys(pool),
+    }));
   }
 }
 

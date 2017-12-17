@@ -20,7 +20,7 @@ Options:
 ## TODOs
 
 * ~~Import code from prototype project~~
-* Extend result object (list dependencies)
+* ~~Extend result object (list dependencies)~~
 * Write tests
 * Update docs
 * Add typescript defs
