@@ -52,7 +52,8 @@ class Loader {
         function loadNextDependency() {
           if (loadedDependencies === dependencies.length) {
             dependencies.forEach(dependency => {
-              const source = _.get(data, dependency.at);
+              const atRoot = dependency.at.length < 1;
+              const source = atRoot ? data : _.get(data, dependency.at);
               const merged = _.mergeWith(
                 {},
                 pool[dependency.filePath],
@@ -60,7 +61,11 @@ class Loader {
                 this._options.mergeCustomizer
               );
               _.unset(merged, this._options.extendKey);
-              _.set(data, dependency.at, merged);
+              if (atRoot) {
+                data = merged;
+              } else {
+                _.set(data, dependency.at, merged);
+              }
             });
             resolve(data);
           } else {
