@@ -23,5 +23,4 @@ Options:
 * ~~Extend result object (list dependencies)~~
 * Write tests
 * Update docs
-* Add typescript defs
 * Publish
