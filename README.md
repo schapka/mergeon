@@ -68,8 +68,8 @@ mergeon
 
 ### CLI
 
-```
-mergeon data/entry.json
+```text
+mergeon data/entry.json > output.json
 ```
 
 ## Options
