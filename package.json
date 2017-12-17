@@ -13,7 +13,7 @@
   "scripts": {
     "prebuild": "rimraf dist",
     "build":
-      "microbundle build --compress false --format cjs src/{index,cli}.js",
+      "microbundle build --compress false --format cjs src/index.js src/cli.js",
     "pretest": "npm run -s build",
     "test": "node scripts/tasks/test.js"
   },
