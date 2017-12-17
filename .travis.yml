@@ -28,4 +28,4 @@ before_install:
   - node --version
 
 script:
-- npm run travis:$JOB_PART
+- npm run $JOB_PART
