@@ -1,3 +1,6 @@
+[![npm](https://img.shields.io/npm/v/mergeon.svg?style=flat)](https://www.npmjs.org/package/mergeon)
+[![Build Status](https://travis-ci.org/schapka/mergeon.svg?branch=master)](https://travis-ci.org/schapka/mergeon)
+
 # Mergeon
 
 > Loading extendable JSON structures
