@@ -1,0 +1,31 @@
+sudo: false
+language: node_js
+
+branches:
+  only:
+    - master
+
+cache:
+  directories:
+    - $HOME/.npm
+    - $HOME/.yarn-cache
+
+matrix:
+  fast_finish: true
+  include:
+    - os: linux
+      node_js: "7"
+      env: JOB_PART=test
+    - os: linux
+      node_js: "6"
+      env: JOB_PART=test
+    - os: linux
+      node_js: "4.3"
+      env: JOB_PART=test
+
+before_install:
+  - nvm --version
+  - node --version
+
+script:
+- npm run travis:$JOB_PART
