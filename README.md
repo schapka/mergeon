@@ -5,6 +5,12 @@
 
 > Loading extendable JSON structures
 
+## Installation
+
+```text
+npm i -S mergeon
+```
+
 ## Example
 
 **`entry.json`**
