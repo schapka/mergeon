@@ -2,12 +2,11 @@ const path = require('path');
 const glob = require('glob');
 const chalk = require('chalk');
 const assert = require('assert');
+const mergeon = require('../..');
 
 const PROJECT_DIR = path.resolve(__dirname, '..', '..');
 const TEST_DIR = path.resolve(PROJECT_DIR, 'test');
 const TEST_PATTERN = path.join(TEST_DIR, '*/');
-
-const mergeon = require(PROJECT_DIR);
 
 const directories = glob.sync(TEST_PATTERN);
 let i = 0;
