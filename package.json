@@ -1,6 +1,6 @@
 {
   "name": "mergeon",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Loading extendable JSON structures",
   "keywords": [
     "json",
