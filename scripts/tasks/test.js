@@ -29,10 +29,12 @@ const runNext = () => {
   const expectedDataFile = path.resolve(dir, 'expect.json');
   const options = require(optionsFile);
   const expectedData = require(expectedDataFile);
+
+  process.stdout.write(`Running test "${testName}"\n`);
+
   mergeon
     .load(options)
     .then(result => {
-      process.stdout.write(`Running test "${testName}"\n`);
       return assert.deepEqual(
         result.data,
         expectedData,
