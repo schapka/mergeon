@@ -15,17 +15,14 @@ matrix:
   include:
     - os: linux
       node_js: "8"
-      env: JOB_PART=test
     - os: linux
       node_js: "7"
-      env: JOB_PART=test
     - os: linux
       node_js: "6"
-      env: JOB_PART=test
 
 before_install:
   - nvm --version
   - node --version
 
 script:
-- npm run $JOB_PART
+- npm run test
