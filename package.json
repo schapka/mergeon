@@ -1,6 +1,6 @@
 {
   "name": "mergeon",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Loading extendable JSON structures",
   "author": "René Schapka",
   "license": "MIT",
@@ -12,12 +12,13 @@
   "bin": "dist/cli.js",
   "scripts": {
     "prebuild": "rimraf dist",
-    "build":
-      "microbundle build --compress false --format cjs src/index.js src/cli.js",
+    "build": "microbundle build --compress false --format cjs src/index.js src/cli.js",
     "pretest": "npm run -s build",
     "test": "node scripts/tasks/test.js"
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "devDependencies": {
     "assert": "^1.4.1",
     "glob": "^7.1.2",
