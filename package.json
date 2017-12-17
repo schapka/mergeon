@@ -1,9 +1,13 @@
 {
   "name": "mergeon",
   "version": "0.1.0",
-  "description": "tbd",
+  "description": "Loading extendable JSON structures",
   "author": "René Schapka",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/schapka/mergeon.git"
+  },
   "main": "dist/mergeon.js",
   "bin": "dist/cli.js",
   "scripts": {
@@ -13,10 +17,10 @@
     "test": "node scripts/tasks/test.js"
   },
   "files": [
-    "src",
     "dist"
   ],
   "devDependencies": {
+    "assert": "^1.4.1",
     "glob": "^7.1.2",
     "microbundle": "~0.2.4",
     "rimraf": "~2.6.2"
