@@ -14,7 +14,7 @@ test_script:
   - ls -al
   - npm run test
 
-build: off
+#build: off
 
 cache:
 - node_modules
