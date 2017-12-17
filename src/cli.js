@@ -1,4 +1,5 @@
 import yargs from 'yargs';
+import chalk from 'chalk';
 import mergeon from '.';
 
 yargs
@@ -30,7 +31,7 @@ function run(options) {
     })
     .catch(error => {
       const errorString = error.toString();
-      process.stdout.write(`${errorString}\n`);
+      process.stdout.write(`${chalk.red(errorString)}\n`);
       process.exit(1);
     });
 }
