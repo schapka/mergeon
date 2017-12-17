@@ -92,6 +92,6 @@ mergeon data/entry.json > output.json
 | ---------- | ------------- |
 | `function` | `undefined`   |
 
-This function will be passed as customizer to lodash’s [`_.mergeWidth`](https://lodash.com/docs/4.17.4#mergeWith) method.
+This function will be passed as customizer to lodash’s [`_.mergeWith`](https://lodash.com/docs/4.17.4#mergeWith) method.
 
 > **Note:** This option is not available to CLI
