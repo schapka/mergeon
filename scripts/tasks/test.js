@@ -2,7 +2,7 @@ const path = require('path');
 const glob = require('glob');
 const chalk = require('chalk');
 const assert = require('assert');
-const mergeon = require('../..');
+const mergeon = require('../../dist/mergeon');
 
 const PROJECT_DIR = path.resolve(__dirname, '..', '..');
 const TEST_DIR = path.resolve(PROJECT_DIR, 'test');
