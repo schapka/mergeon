@@ -8,6 +8,10 @@ yargs
     description: 'Entry file',
     demandOption: true,
   })
+  .option('extend-key', {
+    type: 'string',
+    description: 'Extend key',
+  })
   .command(
     ['load [entry]', '$0 [entry]'],
     'Load JSON file',
@@ -18,14 +22,15 @@ yargs
 
 function run(options) {
   mergeon
-    .load({ entry: options.entry })
+    .load(options)
     .then(result => {
-      const jsonString = JSON.stringify(result.data, null, 2);
+      const jsonString = JSON.stringify(result, null, 2);
       process.stdout.write(`${jsonString}\n`);
       process.exit(0);
     })
     .catch(error => {
-      console.log(error);
+      const errorString = error.toString();
+      process.stdout.write(`${errorString}\n`);
       process.exit(1);
     });
 }
