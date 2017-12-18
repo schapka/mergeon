@@ -1,6 +1,6 @@
 {
   "name": "mergeon",
-  "version": "0.2.8",
+  "version": "0.2.9",
   "description": "Loading extendable JSON structures",
   "keywords": ["json", "merge", "data", "extend"],
   "author": "René Schapka",
