@@ -14,11 +14,11 @@ matrix:
   fast_finish: true
   include:
   - os: linux
-    node_js: "8"
+    node_js: '8'
   - os: linux
-    node_js: "7"
+    node_js: '7'
   - os: linux
-    node_js: "6"
+    node_js: '6'
 
 before_install:
 - nvm --version
@@ -27,13 +27,13 @@ before_install:
 script:
 - npm run test
 
-#deploy:
-#  provider: npm
-#  email: rene.schapka@gmail.com
-#  api_key:
-#    secure: $NPM_API_KEY
-#  on:
-#    tags: true
-#    repo: schapka/mergeon
-#    node: "8"
-#    all_branches: true
+deploy:
+  provider: npm
+  email: rene.schapka@gmail.com
+  api_key:
+    secure: R5ZgyF9a5CQOPDT4PCskV8vrYM1jrTOBzg09x1qGZ2A2gJi6N8NiTHrPCAWxYQv40sy7jlukOArRRAEBvqbXoZ75JzkEBSu2BJnTifhLEnz5hmqPIaN8oRa6Nqt5sWmEY3KTXhL1PCSZ5VilSBz+x9gc9qUkT3GgjvHEM4fJonv9yTczm+Rrrc5Q0pudQCcIZT1dt4/w91DdvpYBuFcAM/uLesjCpbCmURgVLKmNn4xBUfWmK2M/Hwtv3egLpJL4UDVz+PwFabWI6dwheDxI0fSHt8H8PHUSJENJoEG+uTwcodQWbGMQ4xD9WGvqRK496pPGevbUFBDOEXeZrgCu1SWmOCWoTsm5mp5TR1lJzeiJU6Iux230It86ORC02pa3L7OaYBq5dsFog2my5M3/q9lLAIbNtAd+BnaSPzUi0T+KzF017CWcysPar0BAJX+YUpOi5rKMsEQ+jHwkzto8Ix/9DsYyapeezes6C8fKFpxeLAE5SY4tczQSfU3gF0FbnUxQsMnO9t4pMCO00bBfuyg/IaMMDh/mUIJ80eGg7diqCPUgNUbNUysjKBtkJGS94yD5YrpaTEzSXFKC+bUmgYkb4tEUqWBBQtUDAOGSoi1AaQDEZR+at+Dh+8X+E3jZ6/dtBqlHnt7boorlUcmAmAhzjMQVqB8zfYZlr2MLnJo=
+  on:
+    tags: true
+    repo: schapka/mergeon
+    node: '8'
+    all_branches: true
