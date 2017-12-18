@@ -1,9 +1,9 @@
 sudo: false
 language: node_js
 
-branches:
-  only:
-  - master
+#branches:
+#  only:
+#  - master
 
 cache:
   directories:
@@ -36,3 +36,4 @@ deploy:
     tags: true
     repo: schapka/mergeon
     node: "8"
+    all_branches: true
