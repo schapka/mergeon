@@ -1,9 +1,9 @@
 sudo: false
 language: node_js
 
-#branches:
-#  only:
-#  - master
+branches:
+  only:
+  - master
 
 cache:
   directories:
@@ -27,13 +27,13 @@ before_install:
 script:
 - npm run test
 
-deploy:
-  provider: npm
-  email: rene.schapka@gmail.com
-  api_key:
-    secure: $NPM_API_KEY
-  on:
-    tags: true
-    repo: schapka/mergeon
-    node: "8"
-    all_branches: true
+#deploy:
+#  provider: npm
+#  email: rene.schapka@gmail.com
+#  api_key:
+#    secure: $NPM_API_KEY
+#  on:
+#    tags: true
+#    repo: schapka/mergeon
+#    node: "8"
+#    all_branches: true

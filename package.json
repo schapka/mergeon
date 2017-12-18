@@ -17,8 +17,9 @@
       "microbundle build --compress false --format cjs src/mergeon.js src/cli.js",
     "pretest": "npm run -s build",
     "test": "node scripts/tasks/test.js",
+    "prerelease": "npm run -s test",
     "release":
-      "git commit -am \"v$npm_package_version\" && git tag \"v$npm_package_version\" && git push origin master && git push origin master --tags"
+      "git commit -am \"v$npm_package_version\" && git tag \"v$npm_package_version\" && git push origin master && git push origin master --tags && npm publish"
   },
   "files": ["dist"],
   "devDependencies": {
