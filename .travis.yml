@@ -19,9 +19,11 @@ matrix:
     node_js: "7"
   - os: linux
     node_js: "6"
+
 before_install:
 - nvm --version
 - node --version
+
 script:
 - npm run test
 
@@ -33,3 +35,4 @@ deploy:
   on:
     tags: true
     repo: schapka/mergeon
+    condition: node_js = 8
