@@ -1,6 +1,6 @@
 {
   "name": "mergeon",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "Loading extendable JSON structures",
   "keywords": ["json", "merge", "data", "extend"],
   "author": "René Schapka",
@@ -18,7 +18,7 @@
     "pretest": "npm run -s build",
     "test": "node scripts/tasks/test.js",
     "release":
-      "git commit -am \"v$npm_package_version\" && git tag \"v$npm_package_version\" && git push && git push --tags"
+      "git commit -am \"v$npm_package_version\" && git tag \"v$npm_package_version\" && git push --follow-tags"
   },
   "files": ["dist"],
   "devDependencies": {
