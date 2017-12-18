@@ -35,4 +35,5 @@ deploy:
   on:
     tags: true
     repo: schapka/mergeon
-    condition: node_js = 8
+    node: "8"
+    all_branches: true
