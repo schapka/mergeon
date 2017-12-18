@@ -3,26 +3,33 @@ language: node_js
 
 branches:
   only:
-    - master
+  - master
 
 cache:
   directories:
-    - $HOME/.npm
-    - $HOME/.yarn-cache
+  - "$HOME/.npm"
+  - "$HOME/.yarn-cache"
 
 matrix:
   fast_finish: true
   include:
-    - os: linux
-      node_js: "8"
-    - os: linux
-      node_js: "7"
-    - os: linux
-      node_js: "6"
-
+  - os: linux
+    node_js: "8"
+  - os: linux
+    node_js: "7"
+  - os: linux
+    node_js: "6"
 before_install:
-  - nvm --version
-  - node --version
-
+- nvm --version
+- node --version
 script:
 - npm run test
+
+deploy:
+  provider: npm
+  email: rene.schapka@gmail.com
+  api_key:
+    secure: $NPM_API_KEY
+  on:
+    tags: true
+    repo: schapka/mergeon

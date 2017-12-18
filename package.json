@@ -18,7 +18,7 @@
     "pretest": "npm run -s build",
     "test": "node scripts/tasks/test.js",
     "release":
-      "npm run test && npm run build && git commit -am \"v$npm_package_version\" && git tag \"v$npm_package_version\" && git push && git push --tags && npm publish"
+      "git commit -am \"v$npm_package_version\" && git tag \"v$npm_package_version\" && git push && git push --tags"
   },
   "files": ["dist"],
   "devDependencies": {
