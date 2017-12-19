@@ -35,11 +35,21 @@ class Loader {
           if (wildcardPath) {
             _.unset(data, key);
             glob.sync(resolvedFilePath).forEach(file => {
-              const capture = micromatch.capture(resolvedFilePath, file).pop();
-              dependencies.push({
-                filePath: file,
-                at: [].concat(at, wildcardPath.split('.'), capture.split('.')),
-              });
+              const capture = micromatch.capture(resolvedFilePath, file);
+              if (capture) {
+                dependencies.push({
+                  filePath: file,
+                  at: [].concat(
+                    at,
+                    wildcardPath.split('.'),
+                    capture.pop().split('.')
+                  ),
+                });
+              } else {
+                console.log(resolvedFilePath);
+                console.log(file);
+                console.log(capture);
+              }
             });
           } else {
             dependencies.push({
