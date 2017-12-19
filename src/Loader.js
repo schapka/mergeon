@@ -38,7 +38,8 @@ class Loader {
               const resolvedItemFilePath = resolve(itemFile);
               const capture = micromatch.capture(
                 resolvedFilePath,
-                resolvedItemFilePath
+                resolvedItemFilePath,
+                { unixify: false }
               );
               if (capture) {
                 dependencies.push({
