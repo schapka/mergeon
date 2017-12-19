@@ -1,4 +1,4 @@
-import { dirname, resolve } from 'path';
+import { dirname, resolve, sep } from 'path';
 import * as _ from 'lodash';
 import glob from 'glob';
 import micromatch from 'micromatch';
@@ -37,9 +37,8 @@ class Loader {
             glob.sync(resolvedFilePath).forEach(itemFile => {
               const resolvedItemFilePath = resolve(itemFile);
               const capture = micromatch.capture(
-                resolvedFilePath,
-                resolvedItemFilePath,
-                { unixify: false }
+                resolvedFilePath.split(sep).join('/'),
+                resolvedItemFilePath.split(sep).join('/')
               );
               if (capture) {
                 dependencies.push({
