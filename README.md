@@ -12,7 +12,9 @@
 npm i -S mergeon
 ```
 
-## Example
+## Examples
+
+### Simple use case
 
 **`entry.json`**
 
@@ -52,6 +54,10 @@ npm i -S mergeon
   ]
 }
 ```
+
+### Additional examples
+
+See [test directory](https://github.com/schapka/mergeon/tree/master/test) for additional examples.
 
 ## Usage
 
