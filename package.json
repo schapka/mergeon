@@ -21,6 +21,7 @@
     "build": "microbundle build --compress false --format cjs src/mergeon.js src/cli.js",
     "pretest": "npm run -s build",
     "test": "node scripts/tasks/test.js",
+    "prettier": "prettier --single-quote --trailing-comma es5 --write \"{src,scripts,test}/**/*.{js,json}\"",
     "release": "npm run test && git commit -am \"v$npm_package_version\" && git tag \"v$npm_package_version\" && git push origin master && git push origin master --tags"
   },
   "files": [
@@ -29,6 +30,7 @@
   "devDependencies": {
     "assert": "^1.4.1",
     "microbundle": "~0.2.4",
+    "prettier": "^1.9.2",
     "rimraf": "~2.6.2"
   },
   "dependencies": {
