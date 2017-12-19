@@ -2,12 +2,7 @@
   "name": "mergeon",
   "version": "0.2.16",
   "description": "Loading extendable JSON structures",
-  "keywords": [
-    "json",
-    "merge",
-    "data",
-    "extend"
-  ],
+  "keywords": ["json", "merge", "data", "extend"],
   "author": "René Schapka",
   "license": "MIT",
   "repository": {
@@ -18,17 +13,20 @@
   "bin": "dist/cli.js",
   "scripts": {
     "prebuild": "rimraf dist",
-    "build": "microbundle build --compress false --format cjs src/mergeon.js src/cli.js",
+    "build":
+      "microbundle build --compress false --format cjs src/mergeon.js src/cli.js",
     "pretest": "npm run -s build",
     "test": "node scripts/tasks/test.js",
-    "prettier": "prettier --single-quote --trailing-comma es5 --write \"{src,scripts,test}/**/*.{js,json}\"",
-    "release": "npm run test && git commit -am \"v$npm_package_version\" && git tag \"v$npm_package_version\" && git push origin master && git push origin master --tags"
+    "prettier":
+      "prettier --single-quote --trailing-comma es5 --write \"{src,scripts,test}/**/*.{js,json}\"",
+    "precommit": "npm run test && npm run prettier",
+    "release":
+      "npm run test && git commit -am \"v$npm_package_version\" && git tag \"v$npm_package_version\" && git push origin master && git push origin master --tags"
   },
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
   "devDependencies": {
     "assert": "^1.4.1",
+    "husky": "^0.14.3",
     "microbundle": "~0.2.4",
     "prettier": "^1.9.2",
     "rimraf": "~2.6.2"
