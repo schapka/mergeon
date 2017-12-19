@@ -1,5 +1,7 @@
 import { dirname } from 'path';
 import * as _ from 'lodash';
+import glob from 'glob';
+import micromatch from 'micromatch';
 import readJSON from './readJSON';
 import resolveFile from './resolveFile';
 
@@ -12,23 +14,41 @@ const DEFAULT_OPTIONS = {
 class Loader {
   constructor(options) {
     this._options = Object.assign({}, DEFAULT_OPTIONS, options);
+    this._extendTest = new RegExp(`^${this._options.extendKey}(:([\\S]+))?$`);
   }
 
-  _getDependencies(data, at = []) {
+  _getDependencies(data, context, at = []) {
     const dependencies = [];
     Object.keys(data).forEach(key => {
       const value = data[key];
       const type = typeof value;
-      if (key === this._options.extendKey) {
-        dependencies.push({
-          filePath: value,
-          at,
-        });
-      } else if (type === 'object' && value !== null) {
+      if (type === 'object' && value !== null) {
         Array.prototype.push.apply(
           dependencies,
-          this._getDependencies(value, [].concat(at, [key]))
+          this._getDependencies(value, context, [].concat(at, [key]))
         );
+      } else if (type === 'string') {
+        const matches = this._extendTest.exec(key);
+        if (matches !== null) {
+          const resolvedFilePath = resolveFile(value, context);
+          const wildcardPath = matches[2];
+          if (wildcardPath) {
+            _.unset(data, key);
+            glob.sync(resolvedFilePath).forEach(file => {
+              const capture = micromatch.capture(resolvedFilePath, file).pop();
+              dependencies.push({
+                filePath: file,
+                at: [].concat(at, wildcardPath.split('.'), capture.split('.')),
+              });
+            });
+          } else {
+            dependencies.push({
+              filePath: resolvedFilePath,
+              key,
+              at,
+            });
+          }
+        }
       }
     });
     return dependencies;
@@ -37,12 +57,7 @@ class Loader {
   _extend(data, filePath, pool, ancestors) {
     return new Promise((resolve, reject) => {
       const context = dirname(filePath);
-      const dependencies = this._getDependencies(data).map(dependency =>
-        Object.assign({}, dependency, {
-          filePath: resolveFile(dependency.filePath, context),
-        })
-      );
-
+      const dependencies = this._getDependencies(data, context);
       if (dependencies.length < 1) {
         setImmediate(() => {
           resolve(data);
@@ -60,7 +75,7 @@ class Loader {
                 source,
                 this._options.mergeCustomizer
               );
-              _.unset(merged, this._options.extendKey);
+              _.unset(merged, dependency.key);
               if (atRoot) {
                 data = merged;
               } else {
