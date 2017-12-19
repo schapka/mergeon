@@ -1,0 +1,24 @@
+{
+  "items": [
+    {
+      "title": "New title",
+      "image": {
+        "src": "path/to/image.jpg"
+      },
+      "buttons": [
+        {
+          "id": "one"
+        },
+        {
+          "id": "two"
+        },
+        {
+          "id": "new three"
+        },
+        {
+          "id": "new four"
+        }
+      ]
+    }
+  ]
+}

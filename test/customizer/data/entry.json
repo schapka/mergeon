@@ -1,0 +1,16 @@
+{
+  "items": [
+    {
+      "_extends": "./default-item.json",
+      "title": "New title",
+      "buttons": [
+        {
+          "id": "new three"
+        },
+        {
+          "id": "new four"
+        }
+      ]
+    }
+  ]
+}
