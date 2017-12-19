@@ -49,11 +49,6 @@ class Loader {
                     capture.pop().split('.')
                   ),
                 });
-              } else {
-                console.log('resolvedFilePath', resolvedFilePath);
-                console.log('itemFile', itemFile);
-                console.log('resolvedItemFilePath', resolvedItemFilePath);
-                console.log(capture);
               }
             });
           } else {
