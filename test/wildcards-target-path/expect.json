@@ -1,0 +1,12 @@
+{
+  "buttons": {
+    "primary": {
+      "type": "primary",
+      "label": "New primary label"
+    },
+    "secondary": {
+      "type": "secondary",
+      "label": "New secondary label"
+    }
+  }
+}
