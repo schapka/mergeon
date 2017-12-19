@@ -1,6 +1,6 @@
 {
-  "_extends:buttons": "./buttons/*.json",
   "buttons": {
+    "_extends": "./buttons/*.json",
     "primary": {
       "label": "New primary label"
     },
