@@ -50,8 +50,9 @@ class Loader {
                   ),
                 });
               } else {
-                console.log(resolvedFilePath);
-                console.log(resolvedItemFilePath);
+                console.log('resolvedFilePath', resolvedFilePath);
+                console.log('itemFile', itemFile);
+                console.log('resolvedItemFilePath', resolvedItemFilePath);
                 console.log(capture);
               }
             });
