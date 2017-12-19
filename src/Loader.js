@@ -1,4 +1,4 @@
-import { dirname } from 'path';
+import { dirname, resolve } from 'path';
 import * as _ from 'lodash';
 import glob from 'glob';
 import micromatch from 'micromatch';
@@ -34,11 +34,15 @@ class Loader {
           const wildcardPath = matches[2];
           if (wildcardPath) {
             _.unset(data, key);
-            glob.sync(resolvedFilePath).forEach(file => {
-              const capture = micromatch.capture(resolvedFilePath, file);
+            glob.sync(resolvedFilePath).forEach(itemFile => {
+              const resolvedItemFilePath = resolve(itemFile);
+              const capture = micromatch.capture(
+                resolvedFilePath,
+                resolvedItemFilePath
+              );
               if (capture) {
                 dependencies.push({
-                  filePath: file,
+                  filePath: resolvedItemFilePath,
                   at: [].concat(
                     at,
                     wildcardPath.split('.'),
@@ -47,7 +51,7 @@ class Loader {
                 });
               } else {
                 console.log(resolvedFilePath);
-                console.log(file);
+                console.log(resolvedItemFilePath);
                 console.log(capture);
               }
             });
