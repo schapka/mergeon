@@ -30,34 +30,22 @@ class Loader {
       } else if (type === 'string') {
         const matches = this._extendTest.exec(key);
         if (matches !== null) {
+          _.unset(data, key);
+
           const resolvedFilePath = resolveFile(value, context);
-          const wildcardPath = matches[2];
-          if (wildcardPath) {
-            _.unset(data, key);
-            glob.sync(resolvedFilePath).forEach(itemFile => {
-              const resolvedItemFilePath = resolve(itemFile);
-              const capture = micromatch.capture(
-                resolvedFilePath.split(sep).join('/'),
-                resolvedItemFilePath.split(sep).join('/')
-              );
-              if (capture) {
-                dependencies.push({
-                  filePath: resolvedItemFilePath,
-                  at: [].concat(
-                    at,
-                    wildcardPath.split('.'),
-                    capture.pop().split('.')
-                  ),
-                });
-              }
-            });
-          } else {
+          const targetPath = matches[2] ? matches[2].split('.') : [];
+          const files = glob.sync(resolvedFilePath);
+          files.forEach(itemFile => {
+            const resolvedItemFilePath = resolve(itemFile);
+            const capturePath = micromatch.capture(
+              resolvedFilePath.split(sep).join('/'),
+              resolvedItemFilePath.split(sep).join('/')
+            );
             dependencies.push({
-              filePath: resolvedFilePath,
-              key,
-              at,
+              filePath: resolvedItemFilePath,
+              at: [].concat(at, targetPath, capturePath),
             });
-          }
+          });
         }
       }
     });
@@ -85,7 +73,7 @@ class Loader {
                 source,
                 this._options.mergeCustomizer
               );
-              _.unset(merged, dependency.key);
+
               if (atRoot) {
                 data = merged;
               } else {
