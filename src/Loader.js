@@ -19,7 +19,7 @@ class Loader {
     Object.keys(data).forEach(key => {
       const value = data[key];
       const type = typeof value;
-      if (key === this._options.extendKey && type === 'string') {
+      if (key === this._options.extendKey) {
         dependencies.push({
           filePath: value,
           at,
