@@ -1,9 +1,8 @@
-import { dirname, resolve, sep } from 'path';
+import { dirname } from 'path';
 import * as _ from 'lodash';
-import glob from 'glob';
-import micromatch from 'micromatch';
 import readJSON from './readJSON';
 import resolveFile from './resolveFile';
+import getDependencies from './getDependencies';
 
 const DEFAULT_OPTIONS = {
   entry: null,
@@ -17,45 +16,13 @@ class Loader {
     this._extendTest = new RegExp(`^${this._options.extendKey}(:([\\S]+))?$`);
   }
 
-  _getDependencies(data, context, at = []) {
-    const dependencies = [];
-    Object.keys(data).forEach(key => {
-      const value = data[key];
-      const type = typeof value;
-      if (type === 'object' && value !== null) {
-        Array.prototype.push.apply(
-          dependencies,
-          this._getDependencies(value, context, [].concat(at, [key]))
-        );
-      } else if (type === 'string') {
-        const matches = this._extendTest.exec(key);
-        if (matches !== null) {
-          _.unset(data, key);
-
-          const resolvedFilePath = resolveFile(value, context);
-          const targetPath = matches[2] ? matches[2].split('.') : [];
-          const files = glob.sync(resolvedFilePath);
-          files.forEach(itemFile => {
-            const resolvedItemFilePath = resolve(itemFile);
-            const capturePath = micromatch.capture(
-              resolvedFilePath.split(sep).join('/'),
-              resolvedItemFilePath.split(sep).join('/')
-            );
-            dependencies.push({
-              filePath: resolvedItemFilePath,
-              at: [].concat(at, targetPath, capturePath),
-            });
-          });
-        }
-      }
-    });
-    return dependencies;
-  }
-
   _extend(data, filePath, pool, ancestors) {
     return new Promise((resolve, reject) => {
-      const context = dirname(filePath);
-      const dependencies = this._getDependencies(data, context);
+      const dependencies = getDependencies(
+        data,
+        this._options.extendKey,
+        dirname(filePath)
+      );
       if (dependencies.length < 1) {
         setImmediate(() => {
           resolve(data);
@@ -65,8 +32,10 @@ class Loader {
         function loadNextDependency() {
           if (loadedDependencies === dependencies.length) {
             dependencies.forEach(dependency => {
-              const atRoot = dependency.at.length < 1;
-              const source = atRoot ? data : _.get(data, dependency.at);
+              _.unset(data, dependency.sourceAt);
+
+              const atRoot = dependency.targetAt.length < 1;
+              const source = atRoot ? data : _.get(data, dependency.targetAt);
               const merged = _.mergeWith(
                 {},
                 pool[dependency.filePath],
@@ -77,9 +46,10 @@ class Loader {
               if (atRoot) {
                 data = merged;
               } else {
-                _.set(data, dependency.at, merged);
+                _.set(data, dependency.targetAt, merged);
               }
             });
+
             resolve(data);
           } else {
             this._read(
