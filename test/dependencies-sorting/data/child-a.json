@@ -1,0 +1,7 @@
+{
+  "title": "Title child a",
+  "image": {
+    "src": "image/from/child-a.jpg"
+  },
+  "list": ["list-item-from-child-a"]
+}

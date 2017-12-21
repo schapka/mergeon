@@ -1,0 +1,13 @@
+{
+  "data": {
+    "title": "New title",
+    "image": {
+      "src": "image/from/child-b.jpg"
+    },
+    "list": [
+      "list-item-from-child-a",
+      "list-item-from-child-b",
+      "list-item-from-entry"
+    ]
+  }
+}

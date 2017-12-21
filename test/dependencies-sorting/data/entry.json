@@ -1,0 +1,8 @@
+{
+  "_extends:data": "./child-a.json",
+  "data": {
+    "_extends": "./child-b.json",
+    "title": "New title",
+    "list": ["list-item-from-entry"]
+  }
+}

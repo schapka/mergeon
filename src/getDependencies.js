@@ -40,7 +40,7 @@ function getDependencies(
       });
     }
   });
-  return dependencies;
+  return dependencies.sort((a, b) => b.sourceAt.length - a.sourceAt.length);
 }
 
 export default getDependencies;
