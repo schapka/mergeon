@@ -1,0 +1,6 @@
+{
+  "title": "Item title",
+  "image": {
+    "src": "path/to/image.jpg"
+  }
+}

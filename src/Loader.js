@@ -104,7 +104,10 @@ class Loader {
           join(this._options.context, '__DATA_ENTRY__'),
           pool
         )
-      : this._read(resolveFile(this._options.entry), pool);
+      : this._read(
+          resolveFile(this._options.entry, this._options.context),
+          pool
+        );
 
     return p.then(data => ({
       data,
