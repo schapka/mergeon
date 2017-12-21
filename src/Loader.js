@@ -1,4 +1,4 @@
-import { dirname } from 'path';
+import { dirname, join } from 'path';
 import * as _ from 'lodash';
 import readJSON from './readJSON';
 import resolveFile from './resolveFile';
@@ -8,6 +8,7 @@ const DEFAULT_OPTIONS = {
   entry: null,
   extendKey: '_extends',
   mergeCustomizer: null,
+  context: process.cwd(),
 };
 
 class Loader {
@@ -16,7 +17,7 @@ class Loader {
     this._extendTest = new RegExp(`^${this._options.extendKey}(:([\\S]+))?$`);
   }
 
-  _extend(data, filePath, pool, ancestors) {
+  _extend(data, filePath, pool = {}, ancestors = []) {
     return new Promise((resolve, reject) => {
       const dependencies = getDependencies(
         data,
@@ -96,7 +97,16 @@ class Loader {
 
   load() {
     const pool = {};
-    return this._read(resolveFile(this._options.entry), pool).then(data => ({
+    const isObject = typeof this._options.entry === 'object';
+    const p = isObject
+      ? this._extend(
+          Object.assign({}, this._options.entry),
+          join(this._options.context, '__DATA_ENTRY__'),
+          pool
+        )
+      : this._read(resolveFile(this._options.entry), pool);
+
+    return p.then(data => ({
       data,
       files: Object.keys(pool),
     }));
