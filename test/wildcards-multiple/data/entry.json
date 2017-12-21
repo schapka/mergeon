@@ -1,0 +1,5 @@
+{
+  "modules": {
+    "_extends": "./modules/{atoms,molecules,organisms}/*/data.json"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "modules": {
+    "atoms": {
+      "a": {
+        "id": "atom-a"
+      },
+      "b": {
+        "id": "atom-b"
+      }
+    },
+    "molecules": {
+      "a": {
+        "id": "molecule-a"
+      },
+      "b": {
+        "id": "molecule-b"
+      }
+    },
+    "organisms": {
+      "a": {
+        "id": "organism-a"
+      },
+      "b": {
+        "id": "organism-b"
+      }
+    }
+  }
+}
