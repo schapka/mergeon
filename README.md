@@ -89,9 +89,15 @@ mergeon data/entry.json > output.json
 
 ### `entry` (required)
 
-| Type     | Default value |
-| -------- | ------------- |
-| `string` | `undefined`   |
+| Type              | Default value |
+| ----------------- | ------------- |
+| `string | object` | `undefined`   |
+
+### `context`
+
+| Type     | Default value   |
+| -------- | --------------- |
+| `string` | `process.cwd()` |
 
 ### `extendKey`
 
