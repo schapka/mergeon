@@ -27,10 +27,12 @@ function getDependencies(
       const files = glob.sync(filePattern);
       files.forEach(file => {
         const filePath = resolve(file);
-        const capturePath = micromatch.capture(
-          filePattern.split(sep).join('/'),
-          filePath.split(sep).join('/')
-        );
+        const capturePath = micromatch
+          .capture(
+            filePattern.split(sep).join('/'),
+            filePath.split(sep).join('/')
+          )
+          .reduce((acc, segment) => [].concat(acc, segment.split('/')), []);
         const targetAt = [].concat(at, targetPath, capturePath);
         dependencies.push({
           filePath,
