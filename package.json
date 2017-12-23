@@ -1,8 +1,16 @@
 {
   "name": "mergeon",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Loading extendable JSON structures",
-  "keywords": ["json", "merge", "data", "extend"],
+  "keywords": [
+    "json",
+    "merge",
+    "data",
+    "extend",
+    "partials",
+    "include",
+    "inheritance"
+  ],
   "author": "René Schapka",
   "license": "MIT",
   "repository": {
