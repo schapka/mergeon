@@ -4,15 +4,29 @@
 
 # Mergeon
 
-> Loading extendable JSON structures
-
-## Features
+**Loading extendable JSON structures:**
 
 * Load data from different JSON files
 * Use wildcards/globs
 * Override inherited values
 * Merge data
 * Customize merging
+
+## Contents
+
+* [Installation](#installation)
+* [Examples](#examples)
+  * [Simple use case](#simple-use-case)
+  * [Target path](#target-path)
+  * [Wildcards](#wildcards)
+* [Usage](#usage)
+  * [JS API](#js-api)
+  * [CLI](#cli)
+* [Options](#options)
+  * [entry](#entry)
+  * [context](#context)
+  * [extendKey](#extendkey)
+  * [mergeCustomizer](#mergecustomizer)
 
 ## Installation
 
@@ -151,7 +165,7 @@ See [test directory](https://github.com/schapka/mergeon/tree/master/test) for ad
 
 ## Usage
 
-### Javascript / Node
+### JS API
 
 ```js
 import mergeon from 'mergeon';
@@ -177,17 +191,21 @@ mergeon data/entry.json > output.json
 
 ## Options
 
-### `entry` (required)
+### `entry`
 
 | Type              | Default value |
 | ----------------- | ------------- |
 | `string | object` | `undefined`   |
+
+> **Note:** This option is required
 
 ### `context`
 
 | Type     | Default value   |
 | -------- | --------------- |
 | `string` | `process.cwd()` |
+
+> **Note:** This option is not available to CLI
 
 ### `extendKey`
 
