@@ -20,7 +20,7 @@
   * [Target path](#target-path)
   * [Wildcards](#wildcards)
 * [Usage](#usage)
-  * [JS API](#js-api)
+  * [JavaScript API](#javascript-api)
   * [CLI](#cli)
 * [Options](#options)
   * [entry](#entry)
@@ -165,7 +165,7 @@ See [test directory](https://github.com/schapka/mergeon/tree/master/test) for ad
 
 ## Usage
 
-### JS API
+### JavaScript API
 
 ```js
 import mergeon from 'mergeon';
@@ -193,31 +193,29 @@ mergeon data/entry.json > output.json
 
 ### `entry`
 
-| Type              | Default value |
-| ----------------- | ------------- |
-| `string | object` | `undefined`   |
-
-> **Note:** This option is required
+| Type                     | Default     | Required |
+| ------------------------ | ----------- | -------- |
+| `string` &#124; `object` | `undefined` | yes      |
 
 ### `context`
 
-| Type     | Default value   |
-| -------- | --------------- |
-| `string` | `process.cwd()` |
+| Type     | Default         | Required |
+| -------- | --------------- | -------- |
+| `string` | `process.cwd()` | no       |
 
 > **Note:** This option is not available to CLI
 
 ### `extendKey`
 
-| Type     | Default value |
-| -------- | ------------- |
-| `string` | `"_extends"`  |
+| Type     | Default      | Required |
+| -------- | ------------ | -------- |
+| `string` | `"_extends"` | no       |
 
 ### `mergeCustomizer`
 
-| Type       | Default value |
-| ---------- | ------------- |
-| `function` | `undefined`   |
+| Type       | Default     | Required |
+| ---------- | ----------- | -------- |
+| `function` | `undefined` | no       |
 
 This function will be passed as customizer to lodash’s [`_.mergeWith`](https://lodash.com/docs/4.17.4#mergeWith) method.
 
