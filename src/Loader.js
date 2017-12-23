@@ -25,9 +25,7 @@ class Loader {
         dirname(filePath)
       );
       if (dependencies.length < 1) {
-        setImmediate(() => {
-          resolve(data);
-        });
+        resolve(data);
       } else {
         let loadedDependencies = 0;
         function loadNextDependency() {
@@ -76,13 +74,9 @@ class Loader {
       const updatedAncestors = [].concat(ancestors, [filePath]);
 
       if (ancestors.indexOf(filePath) >= 0) {
-        setImmediate(() => {
-          reject(new Error(`Recursion Error: ${updatedAncestors.join(' > ')}`));
-        });
+        reject(new Error(`Recursion Error: ${updatedAncestors.join(' > ')}`));
       } else if (pool[filePath]) {
-        setImmediate(() => {
-          resolve(pool[filePath]);
-        });
+        resolve(pool[filePath]);
       } else {
         readJSON(filePath)
           .then(data => this._extend(data, filePath, pool, updatedAncestors))
