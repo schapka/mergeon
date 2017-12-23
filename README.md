@@ -6,36 +6,54 @@
 
 > Loading extendable JSON structures
 
+## Features
+
+* Load data from different JSON files
+* Use wildcards/globs
+* Override inherited values
+* Merge data
+* Customize merging
+
 ## Installation
+
+**npm**
 
 ```text
 npm i -S mergeon
+```
+
+**yarn**
+
+```text
+yarn add mergeon
 ```
 
 ## Examples
 
 ### Simple use case
 
+Load data from different JSON file and override values:
+
 **`entry.json`**
 
 ```json
 {
-  "items": [
-    {
-      "_extends": "./default-item.json",
-      "title": "New title"
-    }
-  ]
+  "_extends": "./default-data.json",
+  "title": "New title",
+  "image": {
+    "alt": "New alt value"
+  }
 }
 ```
 
-**`default-item.json`**
+**`default-data.json`**
 
 ```json
 {
-  "title": "Item title",
+  "title": "Default title",
   "image": {
-    "src": "path/to/image.jpg"
+    "src": "path/to/default/image.jpg",
+    "alt": "Default alt value"
   }
 }
 ```
@@ -44,20 +62,92 @@ npm i -S mergeon
 
 ```json
 {
-  "items": [
-    {
-      "title": "New title",
-      "image": {
-        "src": "path/to/image.jpg"
-      }
+  "title": "New title",
+  "image": {
+    "src": "path/to/default/image.jpg",
+    "alt": "New alt value"
+  }
+}
+```
+
+### Target path
+
+Define a target path by using special syntax (`<extendKey>:<targetPath>`):
+
+**`entry.json`**
+
+```json
+{
+  "_extends:target.path": "./default-data.json"
+}
+```
+
+**`default-data.json`**
+
+```json
+{
+  "title": "Default title"
+}
+```
+
+**Result**
+
+```json
+{
+  "target": {
+    "path": {
+      "title": "Default title"
     }
-  ]
+  }
+}
+```
+
+### Wildcards
+
+Load multiple files by adding wildcards:
+
+**`entry.json`**
+
+```json
+{
+  "_extends:buttons": "./buttons/*.json"
+}
+```
+
+**`buttons/primary.json`**
+
+```json
+{
+  "type": "primary"
+}
+```
+
+**`buttons/secondary.json`**
+
+```json
+{
+  "type": "secondary"
+}
+```
+
+**Result**
+
+```json
+{
+  "buttons": {
+    "primary": {
+      "type": "primary"
+    },
+    "secondary": {
+      "type": "secondary"
+    }
+  }
 }
 ```
 
 ### Additional examples
 
-See [test directory](https://github.com/schapka/mergeon/tree/master/test) for additional examples.
+See [test directory](https://github.com/schapka/mergeon/tree/master/test) for additional examples, including **wildcards**, **globstars**, **customized merging** and many more.
 
 ## Usage
 
